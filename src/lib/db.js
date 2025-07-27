@@ -1,7 +1,7 @@
 import { MongoClient } from 'mongodb';
 
-const uri = process.env.MONGODB_URI || 'mongodb://localhost:27017';
-const dbName = process.env.MONGODB_DB || 'find-todo-app';
+const uri = process.env.MONGODB_URI || MONGODB_URI;
+const dbName = process.env.MONGODB_DB || MONGODB_DB;
 
 let client;
 let db;
