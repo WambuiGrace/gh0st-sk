@@ -1,0 +1,28 @@
+---
+import astroLogo from '../assets/astro.svg';
+import background from '../assets/background.svg';
+---
+
+<header class="bg-gradient-to-br from-green-900 to-green-800 px-8 py-3 shadow-md">
+  <nav class="flex items-center justify-center max-w-6xl mx-auto">
+    <ul class="flex space-x-8 list-none m-0 p-0">
+      <li class="relative group">
+        <a href="/" class="text-white no-underline text-base font-medium py-2 transition-colors duration-300 hover:text-green-100">Home</a>
+        <!-- Active indicator -->
+        <div class="absolute -bottom-2 left-0 right-0 h-1 bg-yellow-600 rounded-sm"></div>
+        <!-- Decorative wave underline -->
+        <div class="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-10 h-1 bg-gradient-to-r from-transparent via-yellow-400 to-transparent rounded-full"></div>
+      </li>
+      <li class="relative">
+        <a href="/browse" class="text-white no-underline text-base font-medium py-2 transition-colors duration-300 hover:text-green-100">Browse</a>
+      </li>
+      <li class="relative">
+        <a href="/add" class="text-white no-underline text-base font-medium py-2 transition-colors duration-300 hover:text-green-100">Add</a>
+      </li>
+      <li class="relative">
+        <a href="/signin" class="text-white no-underline text-base font-medium py-2 transition-colors duration-300 hover:text-green-100">Sign in</a>
+      </li>
+    </ul>
+  </nav>
+</header>
+

@@ -1,0 +1,49 @@
+---
+import Header from '../components/Header.astro';
+import AddToDoForm from '../components/AddToDoForm.astro';
+import Layout from '../layouts/Layout.astro';
+import '../styles/global.css';
+---
+
+<Layout>
+	<Header />
+	
+	<main class="min-h-screen bg-gradient-to-br from-green-50 to-emerald-100">
+		<div class="max-w-2xl mx-auto px-8 py-16">
+			<div class="text-center mb-12">
+				<div class="text-4xl mb-4">🌿</div>
+				<h1 class="text-4xl md:text-5xl font-bold text-green-800 mb-4">
+					Add Your ToDo
+				</h1>
+				<p class="text-xl text-gray-600">
+					Share something productive you're working on and inspire others!
+				</p>
+			</div>
+
+			<AddToDoForm />
+
+			<!-- Tips Section -->
+			<div class="mt-12 bg-white rounded-lg shadow-md p-6">
+				<h3 class="text-lg font-semibold text-gray-800 mb-4">💡 Tips for great todos:</h3>
+				<ul class="space-y-2 text-gray-600">
+					<li class="flex items-start">
+						<span class="text-green-500 mr-2">•</span>
+						Be specific about what you're doing
+					</li>
+					<li class="flex items-start">
+						<span class="text-green-500 mr-2">•</span>
+						Share something that might inspire others
+					</li>
+					<li class="flex items-start">
+						<span class="text-green-500 mr-2">•</span>
+						Keep it positive and productive
+					</li>
+					<li class="flex items-start">
+						<span class="text-green-500 mr-2">•</span>
+						Consider adding what you learned or achieved
+					</li>
+				</ul>
+			</div>
+		</div>
+	</main>
+</Layout>

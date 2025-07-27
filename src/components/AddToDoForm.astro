@@ -1,0 +1,120 @@
+---
+// This component will handle the todo form submission
+---
+
+<div class="bg-white rounded-lg shadow-md p-8">
+	<form action="/api/todos" method="POST" class="space-y-6">
+		<div>
+			<label for="todoText" class="block text-sm font-medium text-gray-700 mb-2">
+				What are you working on?
+			</label>
+			<textarea 
+				id="todoText"
+				name="todoText"
+				rows="4"
+				required
+				placeholder="Describe what you're doing... (e.g., Learning React hooks, Building a garden planner, Reading a book about productivity)"
+				class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent resize-none"
+			></textarea>
+			<p class="text-sm text-gray-500 mt-1">Minimum 10 characters, maximum 200 characters</p>
+		</div>
+
+		<div>
+			<label for="userName" class="block text-sm font-medium text-gray-700 mb-2">
+				Your Name (optional)
+			</label>
+			<input 
+				type="text"
+				id="userName"
+				name="userName"
+				placeholder="Anonymous Doer"
+				class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+			>
+		</div>
+
+		<div>
+			<label for="category" class="block text-sm font-medium text-gray-700 mb-2">
+				Category
+			</label>
+			<select 
+				id="category"
+				name="category"
+				class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+			>
+				<option value="learning">Learning</option>
+				<option value="health">Health & Fitness</option>
+				<option value="creative">Creative</option>
+				<option value="productivity">Productivity</option>
+				<option value="social">Social</option>
+				<option value="other">Other</option>
+			</select>
+		</div>
+
+		<div class="flex items-center">
+			<input 
+				type="checkbox" 
+				id="isPublic"
+				name="isPublic"
+				checked
+				class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded"
+			>
+			<label for="isPublic" class="ml-2 block text-sm text-gray-700">
+				Make this todo public for others to see
+			</label>
+		</div>
+
+		<div class="flex flex-col sm:flex-row gap-4">
+			<button 
+				type="submit"
+				class="flex-1 bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300 focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+			>
+				Add My ToDo
+			</button>
+			<button 
+				type="button"
+				class="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-3 px-6 rounded-lg transition-colors duration-300"
+				onclick="this.form.reset()"
+			>
+				Clear Form
+			</button>
+		</div>
+	</form>
+</div>
+
+<script>
+	// Form validation and submission handling
+	document.querySelector('form')?.addEventListener('submit', async (e) => {
+		e.preventDefault();
+		
+		const formData = new FormData(e.target as HTMLFormElement);
+		const todoText = formData.get('todoText') as string;
+		
+		if (todoText.length < 10) {
+			alert('Please write at least 10 characters for your todo.');
+			return;
+		}
+		
+		if (todoText.length > 200) {
+			alert('Please keep your todo under 200 characters.');
+			return;
+		}
+		
+		try {
+			const response = await fetch('/api/todos', {
+				method: 'POST',
+				body: formData
+			});
+			
+			if (response.ok) {
+				alert('Your todo has been added successfully!');
+				(e.target as HTMLFormElement).reset();
+				// Optionally redirect to browse page
+				// window.location.href = '/browse';
+			} else {
+				alert('There was an error adding your todo. Please try again.');
+			}
+		} catch (error) {
+			alert('There was an error adding your todo. Please try again.');
+		}
+	});
+</script>

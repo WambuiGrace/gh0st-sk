@@ -1,0 +1,70 @@
+---
+import Header from '../components/Header.astro';
+import ToDoCard from '../components/ToDoCard.astro';
+import Layout from '../layouts/Layout.astro';
+import '../styles/global.css';
+
+// Sample data - this will later come from MongoDB
+const allTodos = [
+	{ id: 1, text: "Learn Astro framework", user: "Dev Explorer", timeAgo: "2 hours ago" },
+	{ id: 2, text: "Build a plant-themed todo app", user: "Green Coder", timeAgo: "4 hours ago" },
+	{ id: 3, text: "Practice TailwindCSS styling", user: "CSS Master", timeAgo: "6 hours ago" },
+	{ id: 4, text: "Read a book about gardening", user: "Plant Lover", timeAgo: "8 hours ago" },
+	{ id: 5, text: "Organize workspace desk", user: "Tidy Person", timeAgo: "12 hours ago" },
+	{ id: 6, text: "Try a new recipe", user: "Food Explorer", timeAgo: "1 day ago" },
+	{ id: 7, text: "Take a walk in nature", user: "Nature Walker", timeAgo: "1 day ago" },
+	{ id: 8, text: "Write in journal", user: "Reflective Soul", timeAgo: "2 days ago" },
+];
+---
+
+<Layout>
+	<Header />
+	
+	<main class="min-h-screen bg-gradient-to-br from-green-50 to-emerald-100">
+		<div class="max-w-4xl mx-auto px-8 py-16">
+			<div class="text-center mb-12">
+				<div class="text-4xl mb-4">🌱</div>
+				<h1 class="text-4xl md:text-5xl font-bold text-green-800 mb-4">
+					Browse All ToDos
+				</h1>
+				<p class="text-xl text-gray-600 max-w-2xl mx-auto">
+					Discover what others are doing to stay productive and get inspired!
+				</p>
+			</div>
+
+			<!-- Search/Filter Section -->
+			<div class="mb-8">
+				<div class="bg-white rounded-lg shadow-md p-6">
+					<div class="flex flex-col sm:flex-row gap-4">
+						<input 
+							type="text" 
+							placeholder="Search todos..." 
+							class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+						>
+						<select class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+							<option>All Categories</option>
+							<option>Learning</option>
+							<option>Health</option>
+							<option>Creative</option>
+							<option>Productivity</option>
+						</select>
+					</div>
+				</div>
+			</div>
+
+			<!-- Todos Grid -->
+			<div class="space-y-4 mb-12">
+				{allTodos.map(todo => (
+					<ToDoCard todo={todo} />
+				))}
+			</div>
+
+			<!-- Load More Button -->
+			<div class="text-center">
+				<button class="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-300">
+					Load More ToDos
+				</button>
+			</div>
+		</div>
+	</main>
+</Layout>
